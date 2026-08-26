@@ -282,16 +282,35 @@ button[type="submit"]:disabled { opacity: 0.6; cursor: wait; }
 .meta dd { margin: 0; }
 
 .badge {
-  font-size: 12px;
-  padding: 4px 8px;
+  font-size: 13px;
+  font-weight: 650;
+  letter-spacing: 0.02em;
+  padding: 7px 12px;
   border: 1px solid currentColor;
+  border-radius: 999px;
   white-space: nowrap;
+  line-height: 1.2;
 }
 
-.status-New { color: var(--new); }
-.status-InProgress { color: var(--warn); }
-.status-Success { color: var(--ok); }
-.status-Rejected { color: var(--stamp); }
+.status-New {
+  color: var(--new);
+  background: color-mix(in srgb, var(--new) 18%, #fff);
+}
+
+.status-InProgress {
+  color: var(--warn);
+  background: color-mix(in srgb, var(--warn) 20%, #fff);
+}
+
+.status-Success {
+  color: var(--ok);
+  background: color-mix(in srgb, var(--ok) 18%, #fff);
+}
+
+.status-Rejected {
+  color: var(--stamp);
+  background: color-mix(in srgb, var(--stamp) 18%, #fff);
+}
 
 .muted, .empty { color: var(--muted); }
 
