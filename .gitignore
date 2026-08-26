@@ -1,0 +1,26 @@
+# Build
+bin/
+obj/
+dist/
+*.user
+*.suo
+.vs/
+*.slnLaunch.user
+
+# Node
+node_modules/
+.vite/
+*.tsbuildinfo
+
+# Secrets and local overrides
+.env
+.env.*
+!.env.example
+appsettings.Local.json
+*.pfx
+
+# OS / IDE
+Thumbs.db
+.DS_Store
+.idea/
+*.swp
