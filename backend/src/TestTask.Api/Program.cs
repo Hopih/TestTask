@@ -6,6 +6,7 @@ using TestTask.Api.Data;
 using TestTask.Api.Services;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Configuration.AddJsonFile("appsettings.Local.json", optional: true, reloadOnChange: true);
 
 builder.Services.AddControllers()
     .AddJsonOptions(options =>
@@ -52,8 +53,8 @@ static string BuildConnectionString(IConfiguration config)
               ?? throw new InvalidOperationException("Не задана строка подключения ConnectionStrings:Postgres.");
 
     var cs = new NpgsqlConnectionStringBuilder(raw);
-    var password = config["Postgres:Password"]
-                   ?? Environment.GetEnvironmentVariable("POSTGRES_PASSWORD");
+    var password = Environment.GetEnvironmentVariable("POSTGRES_PASSWORD")
+                   ?? config["Postgres:Password"];
 
     if (!string.IsNullOrWhiteSpace(password))
     {
@@ -63,7 +64,7 @@ static string BuildConnectionString(IConfiguration config)
     if (string.IsNullOrWhiteSpace(cs.Password))
     {
         throw new InvalidOperationException(
-            "Пароль PostgreSQL не задан. Задайте переменную окружения POSTGRES_PASSWORD.");
+            "Пароль PostgreSQL не задан. Создайте appsettings.Local.json с Postgres:Password или задайте POSTGRES_PASSWORD.");
     }
 
     return cs.ConnectionString;

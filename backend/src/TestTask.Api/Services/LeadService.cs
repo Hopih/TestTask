@@ -56,6 +56,19 @@ public sealed class LeadService(AppDbContext db)
         return ToDto(lead);
     }
 
+    public async Task<bool> DeleteAsync(Guid id, CancellationToken cancellationToken)
+    {
+        var lead = await db.Leads.FirstOrDefaultAsync(x => x.Id == id, cancellationToken);
+        if (lead is null)
+        {
+            return false;
+        }
+
+        db.Leads.Remove(lead);
+        await db.SaveChangesAsync(cancellationToken);
+        return true;
+    }
+
     private static string NormalizePhone(string phone) =>
         string.Join(" ", phone.Split(' ', StringSplitOptions.RemoveEmptyEntries)).Trim();
 

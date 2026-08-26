@@ -12,11 +12,17 @@
 CREATE DATABASE testtask;
 ```
 
-2. В корне репозитория задайте пароль пользователя `postgres` (в Git он не хранится):
+2. Задайте пароль PostgreSQL одним из способов (в Git он не хранится):
+
+В том же терминале, откуда запускаете API:
 
 ```powershell
 $env:POSTGRES_PASSWORD = "ваш_пароль"
 ```
+
+Либо один раз положите пароль в `backend/src/TestTask.Api/appsettings.Local.json` (файл в `.gitignore`). Шаблон: `appsettings.Local.json.example`.
+
+Если заданы оба, берётся переменная из терминала.
 
 3. Запустите API из корня репозитория:
 

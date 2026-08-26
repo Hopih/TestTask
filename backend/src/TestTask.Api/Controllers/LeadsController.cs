@@ -35,4 +35,11 @@ public sealed class LeadsController(LeadService leads) : ControllerBase
         var updated = await leads.UpdateStatusAsync(id, request.Status, cancellationToken);
         return updated is null ? NotFound() : Ok(updated);
     }
+
+    [HttpDelete("{id:guid}")]
+    public async Task<IActionResult> Delete(Guid id, CancellationToken cancellationToken)
+    {
+        var deleted = await leads.DeleteAsync(id, cancellationToken);
+        return deleted ? NoContent() : NotFound();
+    }
 }

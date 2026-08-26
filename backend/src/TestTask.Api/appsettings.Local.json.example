@@ -1,0 +1,5 @@
+{
+  "Postgres": {
+    "Password": "your_postgres_password"
+  }
+}

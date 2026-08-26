@@ -91,3 +91,8 @@ export async function updateLeadStatus(id: string, status: LeadStatus): Promise<
   if (!response.ok) throw new Error(await readError(response))
   return response.json()
 }
+
+export async function deleteLead(id: string): Promise<void> {
+  const response = await fetch(`/api/leads/${id}`, { method: 'DELETE' })
+  if (!response.ok) throw new Error(await readError(response))
+}

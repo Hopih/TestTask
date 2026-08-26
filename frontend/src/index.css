@@ -97,6 +97,30 @@ h2 { font-size: 22px; margin-bottom: 16px; }
   margin-bottom: 12px;
 }
 
+.status-edit {
+  margin-bottom: 0;
+  flex: 1;
+}
+
+.card-actions {
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+}
+
+.delete-btn {
+  border: 1px solid var(--stamp);
+  background: color-mix(in srgb, var(--stamp) 10%, #fff);
+  color: var(--stamp);
+  padding: 10px 14px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.delete-btn:hover {
+  background: color-mix(in srgb, var(--stamp) 18%, #fff);
+}
+
 input, textarea, select, button {
   font: inherit;
   color: var(--ink);

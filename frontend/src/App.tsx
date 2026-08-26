@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState, type FormEvent } from 'react'
 import { SourceSelect } from './SourceSelect'
 import {
   createLead,
+  deleteLead,
   fetchLeads,
   STATUS_LABEL,
   STATUS_OPTIONS,
@@ -107,6 +108,16 @@ export default function App() {
                       setError(err instanceof Error ? err.message : 'Не удалось сменить статус')
                     }
                   }}
+                  onDelete={async () => {
+                    try {
+                      await deleteLead(lead.id)
+                      setLeads((current) => current.filter((item) => item.id !== lead.id))
+                      setNotice('Заявка удалена')
+                      window.setTimeout(() => setNotice(null), 2500)
+                    } catch (err) {
+                      setError(err instanceof Error ? err.message : 'Не удалось удалить заявку')
+                    }
+                  }}
                 />
               ))}
             </ul>
@@ -195,10 +206,12 @@ function LeadForm({
 
 function LeadCard({
   lead,
-  onStatus
+  onStatus,
+  onDelete
 }: {
   lead: Lead
   onStatus: (status: LeadStatus) => Promise<void>
+  onDelete: () => Promise<void>
 }) {
   return (
     <li className="card">
@@ -218,19 +231,32 @@ function LeadCard({
           <dd>{formatDate(lead.createdAt)}</dd>
         </div>
       </dl>
-      <label className="status-edit">
-        Статус
-        <select
-          value={lead.status}
-          onChange={(event) => void onStatus(event.target.value as LeadStatus)}
+      <div className="card-actions">
+        <label className="status-edit">
+          Статус
+          <select
+            value={lead.status}
+            onChange={(event) => void onStatus(event.target.value as LeadStatus)}
+          >
+            {(Object.keys(STATUS_LABEL) as LeadStatus[]).map((status) => (
+              <option key={status} value={status}>
+                {STATUS_LABEL[status]}
+              </option>
+            ))}
+          </select>
+        </label>
+        <button
+          type="button"
+          className="delete-btn"
+          onClick={() => {
+            if (window.confirm(`Удалить заявку «${lead.name}»?`)) {
+              void onDelete()
+            }
+          }}
         >
-          {(Object.keys(STATUS_LABEL) as LeadStatus[]).map((status) => (
-            <option key={status} value={status}>
-              {STATUS_LABEL[status]}
-            </option>
-          ))}
-        </select>
-      </label>
+          Удалить
+        </button>
+      </div>
     </li>
   )
 }
