@@ -64,17 +64,6 @@ h2 { font-size: 22px; margin-bottom: 16px; }
   color: var(--muted);
 }
 
-.stamp {
-  border: 2px solid var(--stamp);
-  color: var(--stamp);
-  padding: 8px 14px;
-  text-transform: uppercase;
-  letter-spacing: 0.18em;
-  font-size: 12px;
-  transform: rotate(8deg);
-  background: rgba(255, 250, 242, 0.7);
-}
-
 .banner {
   padding: 10px 14px;
   margin-bottom: 16px;
@@ -317,5 +306,4 @@ button[type="submit"]:disabled { opacity: 0.6; cursor: wait; }
 @media (max-width: 860px) {
   .layout { grid-template-columns: 1fr; }
   h1 { font-size: 32px; }
-  .stamp { display: none; }
 }

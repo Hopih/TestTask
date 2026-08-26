@@ -53,7 +53,6 @@ export default function App() {
             Принять обращение, поставить статус и не потерять его между сменами.
           </p>
         </div>
-        <div className="stamp">TestTask</div>
       </header>
 
       {error && <div className="banner error">{error}</div>}
