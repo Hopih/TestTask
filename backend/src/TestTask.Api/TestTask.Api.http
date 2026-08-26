@@ -1,0 +1,35 @@
+@baseUrl = http://localhost:5080
+@apiKey = local-crm-key
+
+### Internal UI: list leads
+GET {{baseUrl}}/api/leads
+
+### Internal UI: list by status
+GET {{baseUrl}}/api/leads?status=New
+
+### Internal UI: create lead
+POST {{baseUrl}}/api/leads
+Content-Type: application/json
+
+{
+  "name": "Павел Орлов",
+  "phone": "+7 999 123-45-67",
+  "comment": "Заявка из тестового .http файла",
+  "source": "Сайт"
+}
+
+### CRM: list leads
+GET {{baseUrl}}/api/integration/leads
+X-Api-Key: {{apiKey}}
+
+### CRM: create lead
+POST {{baseUrl}}/api/integration/leads
+Content-Type: application/json
+X-Api-Key: {{apiKey}}
+
+{
+  "name": "CRM Клиент",
+  "phone": "+7 495 000-11-22",
+  "comment": "Пришло из внешней CRM",
+  "source": "CRM"
+}
