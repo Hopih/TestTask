@@ -33,7 +33,23 @@ export const STATUS_LABEL: Record<LeadStatus, string> = {
   Rejected: 'Отказ'
 }
 
-export const SOURCE_OPTIONS = ['Сайт', 'Телефон', 'Telegram', 'WhatsApp', 'Реклама', 'Партнёр', 'CRM']
+export const SOURCE_OPTIONS = [
+  'Сайт',
+  'Телефон',
+  'Email',
+  'Telegram',
+  'WhatsApp',
+  'VK',
+  'Instagram',
+  'Авито',
+  'Яндекс Директ',
+  'Google Ads',
+  'Рекомендация',
+  'Партнёр',
+  'Выставка',
+  'Офис',
+  'CRM'
+] as const
 
 async function readError(response: Response): Promise<string> {
   try {

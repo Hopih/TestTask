@@ -120,6 +120,79 @@ input, textarea, select {
   width: 100%;
 }
 
+.source-select {
+  position: relative;
+}
+
+.source-trigger {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  border: 1px solid #cbbba4;
+  background: #fff;
+  padding: 10px 12px;
+  cursor: pointer;
+  text-align: left;
+}
+
+.source-select.open .source-trigger {
+  border-color: var(--ink);
+  box-shadow: 0 0 0 3px rgba(36, 28, 20, 0.08);
+}
+
+.source-chevron {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  color: var(--muted);
+  transition: transform 0.15s ease;
+}
+
+.source-select.open .source-chevron {
+  transform: rotate(180deg);
+}
+
+.source-menu {
+  position: absolute;
+  z-index: 20;
+  left: 0;
+  right: 0;
+  top: calc(100% + 6px);
+  margin: 0;
+  padding: 6px;
+  list-style: none;
+  background: #fffaf2;
+  border: 1px solid var(--rule);
+  box-shadow: 0 16px 40px rgba(36, 28, 20, 0.16);
+  max-height: 280px;
+  overflow: auto;
+}
+
+.source-menu li + li {
+  margin-top: 2px;
+}
+
+.source-option {
+  width: 100%;
+  border: 0;
+  background: transparent;
+  padding: 9px 12px;
+  cursor: pointer;
+  text-align: left;
+}
+
+.source-option:hover,
+.source-option:focus-visible {
+  background: #f3e8d6;
+}
+
+.source-option.active {
+  background: var(--ink);
+  color: #fffaf2;
+}
+
 textarea { resize: vertical; min-height: 96px; }
 
 button[type="submit"] {

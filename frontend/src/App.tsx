@@ -1,10 +1,10 @@
 import { useEffect, useMemo, useState, type FormEvent } from 'react'
+import { SourceSelect } from './SourceSelect'
 import {
   createLead,
   fetchLeads,
   STATUS_LABEL,
   STATUS_OPTIONS,
-  SOURCE_OPTIONS,
   updateLeadStatus,
   type Lead,
   type LeadStatus
@@ -175,18 +175,7 @@ function LeadForm({
       </label>
       <label>
         Источник
-        <input
-          list="sources"
-          value={source}
-          onChange={(e) => setSource(e.target.value)}
-          required
-          maxLength={80}
-        />
-        <datalist id="sources">
-          {SOURCE_OPTIONS.map((item) => (
-            <option key={item} value={item} />
-          ))}
-        </datalist>
+        <SourceSelect value={source} onChange={setSource} />
       </label>
       <label>
         Комментарий
